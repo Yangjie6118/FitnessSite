@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+<!-- /index_right -->
+
+<section class="widget post-right-item">
+    <h4 class="post-right-title">热门推荐</h4>
+    <ul class="post-hot clearfix">
+        <li>
+            {% for hot_recommend in hot_recommends %}
+            <div class="img">
+                <a href="{% url 'FitnessArticle:home' %}show-{{ hot_recommend.id }}.html" title="{{ hot_recommend.title }}">
+                    <img src="{% url 'base' %}media/{{ hot_recommend.picture }}"
+                         srcset="{% url 'base' %}media/{{ hot_recommend.picture }}"
+                         alt="{{ hot_recommend.title }}" class="wp-post-image" width="120" height="80">
+                </a>
+            </div>
+            <div class="text">
+                <a href="{% url 'FitnessArticle:home' %}show-{{ hot_recommend.id }}.html" title="{{ hot_recommend.title }}"
+                    target="_blank">{{ hot_recommend.title }}
+                </a>
+            </div>
+            {% endfor %}
+        </li>
+    </ul>
+</section>
+<section class="widget post-right-item"><h4 class="post-right-title">所有标签</h4>
+    <div class="tags">
+        {% for tag in tags %}
+        <a href="{% url 'FitnessArticle:home' %}tag/{{ tag.name }}">{{ tag.name }}</a>
+        {% endfor %}
+
+    </div>
+</section>
+<!-- /关注我们 -->
+<div class="post-right-item">
+    <h4 class="post-right-title">关注我们</h4>
+    <div class="wid-about">
+        <p>Yeah Buddy健身，欢迎关注！</p>
+        <img src="{% static 'images/weixin.jpg' %}" alt="微信二维码" width="160" height="160">
+    </div>
+    <div class="wid-about">
+        <p><strong>联系方式:</strong></p>
+        <p>QQ:1330095839</p>
+        <p>Email：1330095839@qq.com</p>
+    </div>
+</div>

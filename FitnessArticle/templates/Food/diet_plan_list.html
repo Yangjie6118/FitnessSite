@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{% include 'FitnessArticle/CSS_JS.html' %}
+{% include 'Muscle/CSS_JS.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="breadcrumb">您的位置： <a itemprop="breadcrumb" href="{% url 'base' %}">健身</a> »
+    <a itemprop="breadcrumb" href="{% url 'FitnessArticle:food' %}">饮食计划查询</a> » {{ acname }}</div>
+
+<div class="response section">
+    <div class="container">
+        <div class="heading-blog">
+            分类：{{ acname }}
+        </div>
+        <div class="sub-div">
+            <div class="col-md-8 blog-grids">
+                {% for plan_list in all_plan_list %}
+                <div class="media response-info">
+                    <div class="media-left response-text-left">
+                        <a href="{% url 'FitnessArticle:home' %}diet_plan-{{ plan_list.id }}.html">
+                            <img src="{% url 'base' %}media/{{ plan_list.picture }}"
+                                srcset="{% url 'base' %}media/{{ plan_list.picture }}"
+                                alt="{{ plan_list.title }}" class="media-object" width="60" height="60"/></a>
+                    </div>
+                    <div class="media-body response-text-right">
+                        <h5><a href="{% url 'FitnessArticle:home' %}diet_plan-{{ plan_list.id }}.html">{{ plan_list.title }}</a></h5>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

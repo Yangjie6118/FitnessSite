@@ -1,0 +1,41 @@
+{% extends 'Muscle/muscle_home.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{% include 'Muscle/CSS_JS.html' %}
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="breadcrumb">您的位置： <a itemprop="breadcrumb" href="{% url 'FitnessArticle:muscle_home' %}">肌肉图解</a> »
+        <span class="current">{{ muscle_shows.category.name }}</span></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="blog-main">
+                    <div class="heading-blog">
+                        {{ muscle_shows.title }}
+                    </div>
+                    <div class="blog-txt">
+                        {{ muscle_shows.content|safe }}
+                    </div>
+                </div>
+                <!--BLOG ONE END -->
+            </div>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>肌肉群</strong>
+                    </li>
+                    {% for other_muscle in other_muscles %}
+                    <li class="list-group-item">
+                        <a href="{% url 'FitnessArticle:home' %}muscle_show-{{ other_muscle.id }}.html">{{ other_muscle.category.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

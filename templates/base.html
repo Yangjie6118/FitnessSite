@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}我的网站{% endblock %}</title>
+    {% load staticfiles %}
+    <!-- Custom Theme files -->
+    <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+    <!-- testimonials -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}" type="text/css">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/smoothbox.css' %}" type='text/css'/>
+     <!-- font-awesome icons -->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- web-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Jockey+One" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
+    {% block css %}{% include 'static.html' %}{% endblock %}
+</head>
+<body>
+    {% include 'header.html' %}
+    {% include 'nav.html' %}
+    {% block content %}
+    {% include 'body.html' %}
+    {% endblock %}
+    {% include 'footer.html' %}
+    {% block script_extends %}
+    {% endblock %}
+</body>
+</html>

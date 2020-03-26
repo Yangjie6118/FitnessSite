@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{% include 'FitnessArticle/CSS_JS.html' %}
+{% include 'Muscle/CSS_JS.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="breadcrumb">您的位置： <a itemprop="breadcrumb" href="{% url 'base' %}">健身</a> »
+    <a itemprop="breadcrumb" href="{% url 'FitnessArticle:food' %}">饮食查询</a></div>
+
+<div class="response section">
+    <div class="container">
+        <div class="heading-blog">
+            常见的食物分类
+        </div>
+        <div class="sub-div">
+            <div class="col-md-8 blog-grids">
+                {% for category in food_category %}
+                <div class="media response-info">
+                    <div class="media-left response-text-left">
+                        <a href="{% url 'FitnessArticle:home' %}food_list-{{ category.id }}.html" title="{{ category.name }}">
+                            <img src="{% url 'base' %}media/{{ category.picture }}"
+                                srcset="{% url 'base' %}media/{{ category.picture }}"
+                                alt="{{ category.name }}" class="media-object" width="60" height="60"/></a>
+                    </div>
+                    <div class="media-body response-text-right">
+                        <h5><a href="{% url 'FitnessArticle:home' %}food_list-{{ category.id }}.html"
+                               title="{{ category.name }}">{{ category.name }}</a></h5>
+                        <p><a href="{% url 'FitnessArticle:home' %}food_list-{{ category.id }}.html"
+                              title="{{ category.name }}">{{ category.txt_info }}</a></p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4 blog-grids">
+                <div class="media response-info">
+                    <div class="media-body response-text-right">
+                        <h5><span>饮食计划</span></h5>
+                        <hr />
+                        {% for diet_plan in diet_plan_category %}
+                        <h5><a href="{% url 'FitnessArticle:home' %}diet_plan_list-{{ diet_plan.id }}.html">
+                                {{ diet_plan.name }}</a></h5>
+                        <hr />
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

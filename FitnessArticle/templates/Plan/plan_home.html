@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{% include 'Plan/CSS_JS.html' %}
+{% include 'Muscle/CSS_JS.html' %}
+{% endblock %}
+
+
+{% block content %}
+<!-- services -->
+<div class="services">
+    <div class="container">
+        <div class="agileits-title">
+            <div class="w3-heading-all">
+                <h3>训练计划</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div id="horizontalTab">
+            <ul class="resp-tabs-list">
+                {% for plan in plans %}
+                <li><i class="fa fa-life-ring" aria-hidden="true"></i>{{ plan.title }}</li>
+                {% endfor %}
+            </ul>
+            <div class="resp-tabs-container">
+                {% for plan in plans %}
+                <div class="tab1">
+                    <div class="col-md-6 tab-info-img">
+                        <a href="">
+                        <img src="{% url 'base' %}media/{{ plan.picture }}"
+                             srcset="{% url 'base' %}media/{{ plan.picture }}"
+                             alt="{{ plan.title }}"></a>
+                    </div>
+                    <div class="col-md-6 tab-info">
+                         <h4>{{ plan.title }}</h4>
+                        <p>{{ plan.abstract }}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <section>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="blog-main">
+                                        <div class="heading-blog">
+                                            {{ plan.title }}
+                                        </div>
+                                        <div class="blog-txt">
+                                            {{ plan.content|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- //services -->
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{% include 'FitnessArticle/CSS_JS.html' %}
+{% include 'Muscle/CSS_JS.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="breadcrumb">您的位置： <a itemprop="breadcrumb" href="{% url 'base' %}">健身</a> »
+    <a itemprop="breadcrumb" href="{% url 'FitnessArticle:food' %}">食物百科</a> » {{ acname }}</div>
+
+<div class="response section">
+    <div class="container">
+        <div class="heading-blog">
+            分类：{{ acname }}
+        </div>
+        <div class="sub-div">
+            <div class="col-md-8 blog-grids">
+                {% for a_food in foods_list %}
+                <div class="media response-info">
+                    <div class="media-left response-text-left">
+                            <img src="{% url 'base' %}media/{{ a_food.picture }}"
+                                srcset="{% url 'base' %}media/{{ a_food.picture }}"
+                                alt="{{ a_food.title }}" class="media-object" width="60" height="60"/></a>
+                    </div>
+                    <div class="media-body response-text-right">
+                        <h5><a href="">{{ a_food.title }}</a></h5>
+                        <p>{{ a_food.content|safe }}</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                {% endfor %}
+                <div class="paginator">
+
+
+                <ul class="pagination">
+                    {# 上一页 #}
+                    <li>
+                        {% if page_of_diets.has_previous%}
+                        <a href="?page={{ page_of_diets.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        {% else %}
+                        <span aria-hidden="true">&laquo;</span>
+                        {% endif %}
+
+
+                    </li>
+
+                    {# 全部页码 #}
+                    {% for page_num in page_range %}
+                    {% if page_num == page_of_diets.number %}
+                    <li class="active"><span>{{ page_num }}</span></li> {# 页码显示为高亮 #}
+                    {% else %}
+                    {% if page_num == '..' %}
+                    <li><span>{{ page_num }}</span></li>
+                    {% else %}
+                    <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                    {% endif %}
+
+
+                    {% endif %}
+                    {% endfor %}
+
+                    {# 下一页 #}
+                    <li>
+                        {% if page_of_diets.has_next%}
+                        <a href="?page={{ page_of_diets.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        {% else %}
+                        <span aria-hidden="true">&raquo;</span>
+                        {% endif %}
+                    </li>
+                </ul>
+                <p>
+                    共有{{ page_of_diets.paginator.count }}篇文章,
+                    当前第{{ page_of_diets.number }}页,
+                    共{{ page_of_diets.paginator.num_pages }}页.
+                </p>
+            </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

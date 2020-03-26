@@ -1,0 +1,110 @@
+{% load staticfiles %}
+<script>
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+</script>
+
+
+<!-- js -->
+<script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+<!-- //js -->
+<!-- nav dropdown -->
+<script>
+    $('ul.dropdown-menu li').hover(function () {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    }, function () {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+    });
+</script>
+<!-- //nav dropdown -->
+<!-- gallery -->
+<script src="{% static 'js/smoothbox.jquery2.js' %}"></script>
+<!-- //gallery -->
+<!-- banner Slider script  -->
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+<script>
+    $(function () {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+</script>
+<!-- //banner Slider-JavaScript -->
+<!-- Team FlexSlider -->
+<script defer src="{% static 'js/jquery.flexslider.js' %}"></script>
+<script>
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+</script>
+<!-- End- Flexslider-script -->
+<!-- Testimonials owl carousel -->
+<script src="{% static 'js/owl.carousel.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $("#owl-demo").owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            autoPlay: false,
+            items: 3,
+            itemsDesktop: [991, 2],
+            itemsDesktopSmall: [414, 4]
+
+        });
+    });
+</script>
+<!-- //Testimonials owl carousel -->
+<!-- start-smooth-scrolling -->
+<script src="{% static 'js/move-top.js' %}"></script>
+<script src="{% static 'js/easing.js' %}"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+    });
+</script>
+<!-- //end-smooth-scrolling -->
+<!-- smooth-scrolling-of-move-up -->
+<script>
+    $(document).ready(function () {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+</script>
+<script src="{% static 'js/SmoothScroll.min.js' %}"></script>
+<!-- //smooth-scrolling-of-move-up -->
+<script src="{% static 'js/numscroller-1.0.js' %}"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'js/bootstrap.js' %}"></script>

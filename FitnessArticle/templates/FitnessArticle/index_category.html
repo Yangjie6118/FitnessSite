@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<div class="fix-main clearfix pr" id="fix-main" _hover-ignore="1">
+    <nav class="nav fl">
+        <ul id="fix-list" class="fix-list clearfix">
+            {% for category in all_category %}
+            <li id="menu-item-117720" class="menu-item">
+                <a href="{% url 'FitnessArticle:home' %}list-{{ category.id }}.html">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>

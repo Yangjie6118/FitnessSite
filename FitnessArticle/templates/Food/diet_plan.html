@@ -1,0 +1,34 @@
+{% extends 'FitnessArticle/home.html' %}
+{% load staticfiles %}
+
+{% block css %}
+
+{% include 'FitnessArticle/CSS_JS.html' %}
+
+{% endblock %}
+
+
+{% block content %}
+{% csrf_token %}
+<div id="main-container" class="container clearfix">
+    <section class="post-left">
+        <div class="breadcrumb">您的位置： <a itemprop="breadcrumb" href="{% url 'base' %}">健身</a> »
+            <a itemprop="breadcrumb" href="{% url 'FitnessArticle:food' %}">饮食计划查询</a>
+                » {{ diet.category.name }}</div>
+        <div class="post-main clearfix">
+            <h1 class="post-title">{{ diet.title }}</h1>
+            <div class="post-con clearfix">
+                <div class="article-meta">
+                    <span class="item">分类：<a href="{% url 'FitnessArticle:home' %}diet_plan_list-{{ diet.category.id }}.html"
+                                             rel="category tag">{{ diet.category.name }}</a></span>
+                </div>
+                <article class="article-content">
+                    {{ diet.content|safe }}
+                </article>
+            </div>
+
+        </div>
+        <!-- /文章 -->
+    </section>
+</div>
+{% endblock %}

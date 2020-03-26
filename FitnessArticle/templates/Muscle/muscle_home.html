@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{% include 'Muscle/CSS_JS.html' %}
+{% endblock %}
+
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="blog-main">
+                    <div class="heading-blog">
+                        人体肌肉图解
+                    </div>
+                    {% for slide in slides %}
+                    <img src="{% url 'base' %}media/{{ slide.img }}" srcset="{% url 'base' %}media/{{ slide.img }}"
+                         alt="{{ slide.text_info }}" class="img-responsive img-rounded" />
+                    {% endfor %}
+                    <div class="blog-txt">
+                        肌肉图解
+                    </div>
+                </div>
+                <!--BLOG ONE END -->
+            </div>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>肌肉群</strong>
+                    </li>
+                    {% for muscle_category in all_muscle_category %}
+                    <li class="list-group-item">
+                        <a href="{% url 'FitnessArticle:home' %}muscle_show-{{ muscle_category.id }}.html">{{ muscle_category.name }}</a>
+                    </li>
+                    {% endfor %}
+                    <br />
+                    <li class="list-group-item">
+                        <strong>肌肉</strong>
+                    </li>
+                    {% for muscle_tag in muscle_tags %}
+                    <li class="list-group-item">
+                        <a href="">{{ muscle_tag.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

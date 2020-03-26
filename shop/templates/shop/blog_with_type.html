@@ -1,0 +1,7 @@
+{% extends 'shop/blog_list.html' %}
+{% block title %}{{ blog_type.name }}{% endblock %}
+
+{% block blog_list_title %}
+    分类：{{ blog_type.name }}
+    <a href="{% url 'shop:blog_list' %}">查看全部文章</a>
+{% endblock %}
